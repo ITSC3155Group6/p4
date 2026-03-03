@@ -20,9 +20,10 @@ class Example extends React.Component {
 
     // Components have a special property named "state" that holds state.
     // We can initialize it here.
-    // We read the example model data into the state variable 'name'
+    // We read the example model data into the state variables 'name' and 'motto'
     this.state = {
       name: window.models.exampleModel().name,
+      motto: window.models.exampleModel().motto,
       counter: 0,
       inputValue: '',
       buttonWasClicked: '',
@@ -33,6 +34,7 @@ class Example extends React.Component {
     // generate new functions that handle the event by just calling
     // the method that handles the event.
     this.handleChangeBound = event => this.handleChange(event);
+    this.handleMottoChangeBound = event => this.handleMottoChange(event);
     // Note: A commmon idiom in React code is to use JavaScript bind() to
     // smash the method to accomplish this passthrough to the method:
     //      this.handleChange = this.handleChange.bind(this);
@@ -69,6 +71,15 @@ class Example extends React.Component {
     this.setState({ inputValue: event.target.value });
   }
 
+  // Method called when the motto input is typed into.
+  // Enforces the 20 character maximum.
+  handleMottoChange(event) {
+    const val = event.target.value;
+    if (val.length <= 20) {
+      this.setState({ motto: val });
+    }
+  }
+
   // Method called when the button is pushed
   /* eslint-disable-next-line no-unused-vars */
   handleButtonClick(buttonName, event) {
@@ -103,7 +114,28 @@ class Example extends React.Component {
         <h1>Project 4 React.js Example</h1>
 
         <div className="motto-update">
-          {/* Your problem #1 motto displaying and updating widget goes here */}
+          <div className="motto-display">
+            <span className="motto-name">{this.state.name}</span>
+            <span className="motto-separator"> — </span>
+            <span className="motto-text">&ldquo;{this.state.motto}&rdquo;</span>
+          </div>
+          <div className="motto-editor">
+            <label htmlFor="mottoInput" className="motto-label">
+              Update motto:
+            </label>
+            <input
+              id="mottoInput"
+              type="text"
+              value={this.state.motto}
+              onChange={this.handleMottoChangeBound}
+              maxLength={20}
+              className="motto-input"
+              placeholder="Up to 20 characters"
+            />
+            <span className="motto-char-count">
+              {this.state.motto.length}/20
+            </span>
+          </div>
         </div>
 
         <p>
