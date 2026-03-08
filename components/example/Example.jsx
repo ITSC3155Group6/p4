@@ -1,6 +1,3 @@
-Last login: Tue Mar  3 10:34:37 on ttys000
-cd D%                                                                           lunablossom@Lunas-MacBook-Air-2 ~ % cd Downloads
-lunablossom@Lunas-MacBook-Air-2 Downloads % cat Example.jsx  
 import React from 'react';
 import './Example.css';
 
@@ -421,4 +418,4 @@ class Example extends React.Component {
 }
 
 export default Example;
-lunablossom@Lunas-MacBook-Air-2 Downloads % 
+
